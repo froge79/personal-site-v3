@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,9 +9,12 @@ export default function AboutPage() {
   return (
     <div className="site">
       <header className="site-header">
-        <Link href="/" className="site-title">
-          Samuel X
-        </Link>
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "About" },
+          ]}
+        />
       </header>
 
       <h1 className="page-title">About</h1>
@@ -43,7 +46,7 @@ export default function AboutPage() {
           I enjoy watching films in my free time. You can find out more by
           visiting my{" "}
           <a
-            href="https://letterboxd.com/"
+            href="https://letterboxd.com/froge159/"
             className="link-letterboxd"
             target="_blank"
             rel="noopener noreferrer"
@@ -53,6 +56,21 @@ export default function AboutPage() {
           page. I occasionally binge a good TV show. My favorites are Breaking
           Bad and Shogun.
         </p>
+        <p>
+          I like listening to EDM, particularly techno. My favorite artist is Charlotte de Witte. My favorite song right now:
+        </p>
+        <iframe
+          data-testid="embed-iframe"
+          style={{ borderRadius: "12px" }}
+          src="https://open.spotify.com/embed/track/6ia0ffeCVyDAX7KOeYLjH2?utm_source=generator&si=b96c578079f847fe"
+          width="100%"
+          height="152"
+          frameBorder={0}
+          allowFullScreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
+  
         <p>
           I like {" "}
           <a

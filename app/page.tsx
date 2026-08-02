@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { getAllPosts, formatDate } from "@/lib/posts";
+import { getFeaturedPosts, formatDate } from "@/lib/posts";
 import { SocialLinks } from "@/components/SocialLinks";
 
 export default function HomePage() {
-  const posts = getAllPosts();
+  const posts = getFeaturedPosts();
 
   return (
     <div className="site site-home">
@@ -31,6 +31,10 @@ export default function HomePage() {
             </div>
           </div>
         ))}
+        {posts.length > 0 && <hr />}
+        <div className="post-list-more">
+          <Link href="/blog">View all posts →</Link>
+        </div>
       </div>
 
       <SocialLinks />

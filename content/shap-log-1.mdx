@@ -1,0 +1,76 @@
+---
+title: "SHAP Research Log #1"
+date: "2026-07-21"
+featured: true
+---
+
+This is the first entry in a series of research logs and progress reflections. I think it's a nice way to keep myself accountable and document my journey.
+
+The idea is to analyze whether Shapley-based attribution provides a reliable, scalable, and causally faithful method for discovering and validating semantic concepts represented by Sparse Autoencoder (SAE) activations in large language models (LLMs), and whether it outperforms existing attribution-based interpretation methods.
+
+## Decisions I Had to Make
+
+**Which SAE?** I decided to use GPT-2-small SAEs. It's a good small model that shouldn't stretch my compute at all, and it has plenty of pre-trained SAEs fully compatible with the `sae-lens` library. I picked the `gpt2-small-res-jb` SAE trained on residual stream activations. I prefer this over attention or MLP SAEs because the residual stream captures the global state of computation up to that point and represents fully formed, rich semantic concepts. Post-residual-stream SAEs are the gold standard for general-purpose interpretability — they represent the complete computational state before the next layer. Again, trying to focus on completeness in SAE selection. I picked the 32K-feature SAE for significantly faster compute, because calculating SHAP on a 128K feature set would be a nightmare. The tradeoff is that it may struggle with polysemanticity (a single feature representing multiple loosely related concepts).
+
+**Which dataset?** I was originally planning on testing multiple concepts (and therefore multiple datasets), but I figured it would be smarter to start with one simple concept before scaling up. It's always better to start small and verify the experiment actually works. I picked SST-2 (binary sentiment) over SST-5 (fine-grained, multi-class). Binary classification should be simpler for the probe — two classes instead of five — and causal validation is also much cleaner.
+
+**Which layers?** I only extracted SAE activations from layers 7–11. Earlier layers tend to focus on shallow, syntactic patterns, while middle-to-later layers contribute most to semantic representation.
+
+**Compute setup.** I chose Lambda Labs for cloud compute. Vast.ai is cheaper, but because SHAP computation can take a long time, I wanted the 100% uptime that Vast can't guarantee. I SSH into the cloud instance, clone the repo, regenerate activations, and either `scp` the results to my local machine or push directly to GitHub.
+
+## Activation Extraction
+
+First, I load GPT-2-small and the corresponding SAE via `sae-lens`:
+
+```python
+# Load model
+model = HookedTransformer.from_pretrained("gpt2-small")
+
+# Load SAE
+sae = SAE.from_pretrained("gpt2-small-res-jb", ...)
+```
+
+Then I run SST-2 sentences through the model, hooking into `resid_post` at each target layer to capture the residual stream. Those residual vectors get passed through the SAE encoder to produce feature activations:
+
+$$\mathbf{f} = \text{ReLU}(W_{\text{enc}} \cdot \mathbf{x}_{\text{resid}} + \mathbf{b}_{\text{enc}})$$
+
+I save per-sentence activation vectors using the last token position, since it encodes contextual information from all preceding tokens, making it a good summary representation of the sentence.
+
+```python
+# Extract activations at last token position
+activations = sae.encode(resid_post[:, -1, :])
+```
+
+**Data splits.** I used a three-way split: probe training (70%), probe validation (15%), and a SHAP held-out set (15%). I kept the SHAP set separate because I'll be comparing probe weights to SHAP values, and I don't want the probe to have already seen those examples. I also saved the split indices for reproducibility.
+
+**Sanity checks.** I didn't save the sanity check results, but they all passed. About 96% of activations were zero (quite sparse), and all activation tensors had the correct shape.
+
+## Probe Training
+
+A logistic regression probe is trained on each layer's SAE activations to predict a binary sentiment label (positive vs. negative). $L_1$ regularization forces the solver to zero out irrelevant features entirely, making it much easier to filter out dead features and save SHAP compute.
+
+I initially used the `saga` solver, but it took minutes on my 32K-feature activations without converging. I switched to `liblinear`, which uses coordinate descent — this dropped the runtime to a few seconds. Finally, I tuned the regularization strength $C$ over $\{0.01, 0.1, 1.0, 10.0\}$. $C = 1$ yielded the highest validation accuracy.
+
+```python
+from sklearn.linear_model import LogisticRegression
+
+probe = LogisticRegression(
+    penalty="l1",
+    solver="liblinear",
+    C=1.0,
+    max_iter=1000
+)
+probe.fit(X_train, y_train)
+```
+
+**Results.** After training probes for each layer, both accuracy and non-zero weight count were highest at layer 7 and decreased from there.
+
+My guess as to why sentiment peaks at layer 7: before layer 7, the model has done enough processing that sentiment is well-represented in the residual stream, but after layer 7, the model begins shifting its focus toward next-token prediction — turning instead to syntactic and positional representations. Non-zero weight count might peak at layer 7 because sentiment is distributed across many features that are all useful. In later layers, sentiment becomes less distributed, so many features get zeroed out as irrelevant.
+
+## Problems I Ran Into
+
+The `saga` solver was far too slow on 32K-dimensional inputs. Switching to `liblinear` fixed the issue immediately. I also had trouble with large activation files when trying to `scp` them from the cloud instance to my local machine. I ended up using `tar` and `gzip` to compress them before transferring.
+
+## What's Next
+
+Next week I'll compute SHAP values and compare SHAP-based feature rankings to gradient-based methods through steering.

@@ -90,6 +90,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin-left: clamp(1.5rem, 8vw, 5rem);
+  margin-right: auto;
   padding-bottom: 2rem;
 }
 
@@ -177,6 +179,53 @@ a:hover {
   color: var(--text-muted);
   font-size: 0.875rem;
   margin-top: 0.25rem;
+}
+
+.post-list-more {
+  padding: 1.25rem 0 0;
+}
+
+.post-list-more a {
+  color: var(--text-faint);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.post-list-more a:hover {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Breadcrumbs */
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem;
+  list-style: none;
+  color: var(--text-faint);
+  font-size: 0.875rem;
+}
+
+.breadcrumbs a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.breadcrumbs-sep {
+  color: var(--text-faint);
+}
+
+.breadcrumbs [aria-current="page"] {
+  color: var(--text-muted);
 }
 
 /* Social links */

@@ -8,6 +8,7 @@ export type PostMeta = {
   slug: string;
   title: string;
   date: string;
+  featured: boolean;
 };
 
 export type Post = PostMeta & {
@@ -23,25 +24,30 @@ function getMdxFiles(): string[] {
     .filter((file) => file.endsWith(".mdx"));
 }
 
+function parsePostMeta(filename: string): PostMeta {
+  const slug = filename.replace(/\.mdx$/, "");
+  const fullPath = path.join(contentDirectory, filename);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data } = matter(fileContents);
+
+  return {
+    slug,
+    title: data.title as string,
+    date: data.date as string,
+    featured: Boolean(data.featured),
+  };
+}
+
 export function getAllPosts(): PostMeta[] {
-  const files = getMdxFiles();
-
-  const posts = files.map((filename) => {
-    const slug = filename.replace(/\.mdx$/, "");
-    const fullPath = path.join(contentDirectory, filename);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { data } = matter(fileContents);
-
-    return {
-      slug,
-      title: data.title as string,
-      date: data.date as string,
-    };
-  });
+  const posts = getMdxFiles().map(parsePostMeta);
 
   return posts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
+}
+
+export function getFeaturedPosts(): PostMeta[] {
+  return getAllPosts().filter((post) => post.featured);
 }
 
 export function getPostBySlug(slug: string): Post | null {
@@ -58,6 +64,7 @@ export function getPostBySlug(slug: string): Post | null {
     slug,
     title: data.title as string,
     date: data.date as string,
+    featured: Boolean(data.featured),
     content,
   };
 }

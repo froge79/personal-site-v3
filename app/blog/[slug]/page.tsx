@@ -7,6 +7,7 @@ import {
   formatDate,
 } from "@/lib/posts";
 import { renderMDX } from "@/lib/mdx";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -42,9 +43,13 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="site">
       <header className="site-header">
-        <Link href="/" className="site-title">
-          Samuel X
-        </Link>
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: post.title },
+          ]}
+        />
       </header>
 
       <article>
@@ -57,7 +62,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="prose">{content}</div>
 
-        <Link href="/" className="back-link">
+        <Link href="/blog" className="back-link">
           ← Back
         </Link>
       </article>
