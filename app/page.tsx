@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getFeaturedPosts, formatDate } from "@/lib/posts";
 import { SocialLinks } from "@/components/SocialLinks";
+import { GameOfLife } from "@/components/GameOfLife";
 
 export default function HomePage() {
   const posts = getFeaturedPosts();
@@ -12,12 +13,20 @@ export default function HomePage() {
           Samuel X
         </Link>
         <Link href="/about" className="site-description">
-          <span>my work, football, cinema, and whatever else</span>
+          <span>my work, hobbies, thoughts, and whatever else</span>
           <span className="site-description-arrow" aria-hidden="true">
             →
           </span>
         </Link>
+        <div className="status-badge">
+          <span className="status-dot" aria-hidden="true">
+            <span className="status-dot-ping" />
+          </span>
+          <span>(trying to) lock in</span>
+        </div>
       </header>
+
+      
 
       <div className="post-list">
         {posts.map((post, index) => (
@@ -37,7 +46,10 @@ export default function HomePage() {
         </div>
       </div>
 
-      <SocialLinks />
+      <div className="home-footer">
+        <GameOfLife />
+        <SocialLinks />
+      </div>
     </div>
   );
 }

@@ -57,7 +57,7 @@ export default function AboutPage() {
           Bad and Shogun.
         </p>
         <p>
-          I like listening to EDM, particularly techno. My favorite artist is Charlotte de Witte. My favorite song right now:
+          I like listening to classical music and EDM, particularly techno. My favorite artist is Charlotte de Witte. My favorite song right now:
         </p>
         <iframe
           data-testid="embed-iframe"
@@ -84,42 +84,7 @@ export default function AboutPage() {
           of nice gear after college apps.
         </p>
         <p>
-          I&apos;m an agonistic and if you think you can convert me to
-          Christianity, you&apos;re welcome to try.
-        </p>
-        <p>
-          Sometimes I think about {""}
-          <a
-            href="https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
-            className="link-consciousness"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            consciousness
-          </a>{""}, {""}
-          <a
-            href="https://en.wikipedia.org/wiki/Why_am_I_me"
-            className="link-vertiginous-question"
-            target="_blank"
-            rel="noopener noreferrer"
-          >the vertiginous question
-          </a>{""}, {""}
-          <a
-            href="https://en.wikipedia.org/wiki/Death_anxiety"
-            className="link-death"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            death
-          </a>{""}, and {""}
-          <a
-            href="https://en.wikipedia.org/wiki/Existential_nihilism"
-            className="link-meaning-of-life"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            the meaning of life
-          </a>.
+          I&apos;m an agonistic. I lean towards Christianity.
         </p>
       </div>
     </div>

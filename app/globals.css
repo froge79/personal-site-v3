@@ -84,19 +84,46 @@ a:hover {
   max-width: 40rem;
   margin: 0 auto;
   padding: 3rem 1.5rem 6rem;
+  animation: fade-up 350ms ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site {
+    animation: none;
+  }
 }
 
 .site-home {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin-left: clamp(1.5rem, 8vw, 5rem);
-  margin-right: auto;
+  padding-bottom: 0;
+}
+
+/* Pinned to the bottom of the viewport so it never drifts further down the
+   page as more featured posts are added above it. */
+.home-footer {
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  padding-top: 1.75rem;
   padding-bottom: 2rem;
+  background: var(--bg);
 }
 
 .site-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2.75rem;
 }
 
 .site-header h1,
@@ -124,7 +151,7 @@ a:hover {
   max-width: 100%;
   gap: 0.35rem;
   color: var(--text-muted);
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   text-decoration: none;
 }
 
@@ -150,16 +177,111 @@ a:hover {
   transform: translateX(0.25rem);
 }
 
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+  color: var(--text-faint);
+  font-size: 0.8125rem;
+}
+
+.status-dot {
+  position: relative;
+  display: inline-flex;
+  width: 0.5rem;
+  height: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+.status-dot-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: status-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes status-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  75%,
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot-ping {
+    display: none;
+  }
+}
+
+/* Game of Life panel */
+
+.life-panel {
+  height: 10rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  overflow: hidden;
+}
+
+.life-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* dissolve the edges so the wrap-around never reads as a hard boundary */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+}
+
 /* Blog index */
 
 .post-list hr {
   border: none;
-  border-top: 1px solid var(--border);
+  height: 1px;
   margin: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border) 12%,
+    var(--border) 88%,
+    transparent
+  );
 }
 
 .post-item {
-  padding: 1.25rem 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 1.25rem;
+  padding: 1.25rem 0.75rem;
+  margin: 0 -0.75rem;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+}
+
+.post-item:hover {
+  background: var(--bg-subtle);
+}
+
+.post-item a {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .post-list a {
@@ -175,10 +297,9 @@ a:hover {
 }
 
 .post-date {
-  display: block;
+  flex-shrink: 0;
   color: var(--text-muted);
   font-size: 0.875rem;
-  margin-top: 0.25rem;
 }
 
 .post-list-more {
@@ -234,18 +355,20 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: auto;
-  padding-top: 3rem;
 }
 
 .social-links a {
   display: flex;
   color: var(--text-muted);
   text-decoration: none;
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
 }
 
 .social-links a:hover {
   color: var(--accent-hover);
+  transform: translateY(-2px);
 }
 
 .social-links svg {
