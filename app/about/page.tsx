@@ -57,20 +57,19 @@ export default function AboutPage() {
           Bad and Shogun.
         </p>
         <p>
-          I like listening to classical music and EDM, particularly techno. My favorite artist is Charlotte de Witte. My favorite song right now:
+          I have a pretty random music taste, but I enjoy classical music and EDM, particularly techno, trance, and house. My favorite song right now:
         </p>
         <iframe
-          data-testid="embed-iframe"
-          style={{ borderRadius: "12px" }}
-          src="https://open.spotify.com/embed/track/6ia0ffeCVyDAX7KOeYLjH2?utm_source=generator&si=b96c578079f847fe"
+          src="https://open.spotify.com/embed/track/7fIfO8fZ55Eq5qtd5vCd6z?utm_source=generator&si=6df0d26a8fa64728"
+          title="Spotify player"
           width="100%"
           height="152"
-          frameBorder={0}
-          allowFullScreen
+          style={{ borderRadius: 12, border: "none" }}
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowFullScreen
           loading="lazy"
         />
-  
+
         <p>
           I like {" "}
           <a
