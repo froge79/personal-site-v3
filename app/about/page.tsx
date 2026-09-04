@@ -46,7 +46,7 @@ export default function AboutPage() {
           I enjoy watching films in my free time. You can find out more by
           visiting my{" "}
           <a
-            href="https://letterboxd.com/froge159/"
+            href="https://letterboxd.com/"
             className="link-letterboxd"
             target="_blank"
             rel="noopener noreferrer"
@@ -57,10 +57,10 @@ export default function AboutPage() {
           Bad and Shogun.
         </p>
         <p>
-          I have a pretty random music taste, but I enjoy classical music and EDM, particularly techno, trance, and house. My favorite song right now:
+          I like classical music and EDM, particularly techno, house/tech-house, and a bit of trance. My favorite DJs are Armin van Buuren and Adam Beyer. Favorite song right now:
         </p>
         <iframe
-          src="https://open.spotify.com/embed/track/7fIfO8fZ55Eq5qtd5vCd6z?utm_source=generator&si=6df0d26a8fa64728"
+          src="https://open.spotify.com/embed/track/0O5J5xw0Geb9csWY6rg3uj?utm_source=generator&si=be7b162068c44c24"
           title="Spotify player"
           width="100%"
           height="152"
@@ -71,16 +71,17 @@ export default function AboutPage() {
         />
 
         <p>
-          I like {" "}
+          I also love bass fishing. I&apos;m really into
+          {" "}
           <a
             href="https://www.tacklewarehouse.com/"
             className="link-tacklewarehouse"
             target="_blank"
             rel="noopener noreferrer"
           >
-            bass fishing
-          </a>{" "} in my free time. Hopefully I&apos;ll get a bunch
-          of nice gear after college apps.
+            tackle and fishing gear
+          </a>{""}
+          , and I&apos;m hoping to start a YouTube channel after college apps.
         </p>
         <p>
           I&apos;m an agonistic. I lean towards Christianity.
