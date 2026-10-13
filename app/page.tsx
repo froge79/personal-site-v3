@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getFeaturedPosts, formatDate } from "@/lib/posts";
-// import { SocialLinks } from "@/components/SocialLinks";
+import { SocialLinks } from "@/components/SocialLinks";
 import { GameOfLife } from "@/components/GameOfLife";
 
 export default function HomePage() {
@@ -48,7 +48,7 @@ export default function HomePage() {
 
       <div className="home-footer">
         <GameOfLife />
-        {/* <SocialLinks /> */}
+        {<SocialLinks />}
       </div>
     </div>
   );

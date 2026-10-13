@@ -1,7 +1,7 @@
 const socials = [
   {
     name: "GitHub",
-    href: "https://github.com/froge159",
+    href: "https://github.com/froge79",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -25,7 +25,7 @@ const socials = [
   },
   {
     name: "X",
-    href: "https://x.com/froge159",
+    href: "https://x.com/froge79",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -49,7 +49,7 @@ const socials = [
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/froge1591/",
+    href: "https://www.instagram.com/froge_79/",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -72,7 +72,7 @@ const socials = [
   },
   {
     name: "Letterboxd",
-    href: "https://letterboxd.com/froge159",
+    href: "https://letterboxd.com/froge79",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path

@@ -46,7 +46,7 @@ export default function AboutPage() {
           I enjoy watching films in my free time. You can find out more by
           visiting my{" "}
           <a
-            href="https://letterboxd.com/"
+            href="https://letterboxd.com/froge79"
             className="link-letterboxd"
             target="_blank"
             rel="noopener noreferrer"
