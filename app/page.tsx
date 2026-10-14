@@ -23,7 +23,7 @@ export default function HomePage() {
           <span className="status-dot" aria-hidden="true">
             <span className="status-dot-ping" />
           </span>
-          <span>(trying to) lock in</span>
+          <span>writing application essays..</span>
         </div>
       </header>
 
