@@ -54,10 +54,10 @@ export default function AboutPage() {
             Letterboxd
           </a>{" "}
           page. I occasionally binge a good TV show. My favorites are Breaking
-          Bad and Shogun.
+          Bad, Succession, and Shogun.
         </p>
         <p>
-          I like classical music and EDM, particularly techno, house/tech-house, and a bit of trance. My favorite DJs are Armin van Buuren and Adam Beyer. Favorite song right now:
+          I like classical music and dance music, particularly techno, house, and a bit of trance and tech-house. I enjoy both big-room festival tracks and subtle, groovy, underground club tracks. Currently playing:
         </p>
         <iframe
           src="https://open.spotify.com/embed/track/0O5J5xw0Geb9csWY6rg3uj?utm_source=generator&si=be7b162068c44c24"

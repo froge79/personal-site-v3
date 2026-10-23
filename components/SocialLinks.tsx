@@ -25,7 +25,7 @@ const socials = [
   },
   {
     name: "X",
-    href: "https://x.com/froge79",
+    href: "https://x.com/froge79/with_replies",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path

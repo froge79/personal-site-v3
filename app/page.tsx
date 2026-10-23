@@ -23,7 +23,7 @@ export default function HomePage() {
           <span className="status-dot" aria-hidden="true">
             <span className="status-dot-ping" />
           </span>
-          <span>writing application essays..</span>
+          <span>writing application essays and bingeing succession..</span>
         </div>
       </header>
 
