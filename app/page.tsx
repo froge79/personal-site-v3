@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { getFeaturedPapers } from "@/lib/papers";
-import { PaperCard } from "@/components/PaperCard";
+import { getFeaturedPosts, formatDate } from "@/lib/posts";
 import { SocialLinks } from "@/components/SocialLinks";
 import { GameOfLife } from "@/components/GameOfLife";
 
 export default function HomePage() {
-  const papers = getFeaturedPapers();
+  const posts = getFeaturedPosts();
 
   return (
     <div className="site site-home">
@@ -28,28 +27,22 @@ export default function HomePage() {
       </header>
 
       <div className="post-list">
-        {papers.map((paper, index) => (
-          <div key={paper.slug}>
+        {posts.map((post, index) => (
+          <div key={post.slug}>
             {index > 0 && <hr />}
-            <PaperCard paper={paper} />
+            <div className="post-item">
+              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+              <time className="post-date" dateTime={post.date}>
+                {formatDate(post.date)}
+              </time>
+            </div>
           </div>
         ))}
-        {papers.length > 0 && <hr />}
+        {posts.length > 0 && <hr />}
         <div className="post-list-more">
-          <Link href="/research">View all papers →</Link>
+          <Link href="/blog">View all blogs →</Link>
         </div>
       </div>
-
-      <nav className="home-sections" aria-label="More">
-        <Link href="/blog" className="home-section-link">
-          <span>Blog</span>
-          <span className="home-section-arrow" aria-hidden="true">→</span>
-        </Link>
-        <Link href="/projects" className="home-section-link">
-          <span>Tools &amp; projects</span>
-          <span className="home-section-arrow" aria-hidden="true">→</span>
-        </Link>
-      </nav>
 
       <div className="home-footer">
         <GameOfLife />
