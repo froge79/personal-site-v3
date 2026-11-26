@@ -58,7 +58,7 @@ export default function AboutPage() {
           I like classical music and dance music &#40;pls don&apos;t call it edm or rave music&#41;, particularly techno and house. I listen to big-room/festival tracks and underground/club tracks. Currently playing:
         </p>
         <iframe
-          src="https://open.spotify.com/track/21jO16ka3N4a65b14e7taN?si=21505c23f9e24ca3"
+          src="https://open.spotify.com/embed/track/1DCm6kI9tCSrzjud8pL62C?utm_source=generator&si=928f4517d1474b32"
           title="Spotify player"
           width="100%"
           height="152"
