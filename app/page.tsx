@@ -13,7 +13,7 @@ export default function HomePage() {
           Samuel X
         </Link>
         <Link href="/about" className="site-description">
-          <span>my work, hobbies, thoughts, and whatever else</span>
+          <span>work, hobbies, thoughts, and whatever else</span>
           <span className="site-description-arrow" aria-hidden="true">
             →
           </span>

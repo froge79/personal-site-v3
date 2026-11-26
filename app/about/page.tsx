@@ -21,9 +21,9 @@ export default function AboutPage() {
 
       <div className="prose">
         <p>
-          I love watching football. I support{" "}
+          I support{" "}
           <a
-            href="https://www.chelseafc.com/"
+            href="https://youtu.be/W_AwYFTSQZ8?t=10"
             className="link-chelsea"
             target="_blank"
             rel="noopener noreferrer"
@@ -32,35 +32,33 @@ export default function AboutPage() {
           </a>{" "}
           and the{" "}
           <a
-            href="https://www.englandfootball.com/"
+            href="https://youtu.be/Kisz0J2fvyQ?t=102"
             className="link-england"
             target="_blank"
             rel="noopener noreferrer"
           >
             England
           </a>{" "}
-          national team, week in and week out. My favorite players are Estevao
+          national team. My favorite players are Estevao
           and Harry Kane.
         </p>
         <p>
-          I enjoy watching films in my free time. You can find out more by
-          visiting my{" "}
+          I enjoy watching and commenting on{" "}
           <a
             href="https://letterboxd.com/froge79"
             className="link-letterboxd"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Letterboxd
-          </a>{" "}
-          page. I occasionally binge a good TV show. My favorites are Breaking
-          Bad, Succession, and Shogun.
+            films
+          </a>{" "}in my free time. I occasionally binge a good TV show &#40;Breaking
+          Bad, Succession, Shogun&#41;.
         </p>
         <p>
-          I like classical music and dance music, particularly techno, house, and a bit of trance and tech-house. I enjoy both big-room festival tracks and subtle, groovy, underground club tracks. Currently playing:
+          I like classical music and dance music &#40;pls don&apos;t call it edm or rave music&#41;, particularly techno and house. I listen to big-room/festival tracks and underground/club tracks. Currently playing:
         </p>
         <iframe
-          src="https://open.spotify.com/embed/track/0O5J5xw0Geb9csWY6rg3uj?utm_source=generator&si=be7b162068c44c24"
+          src="https://open.spotify.com/track/21jO16ka3N4a65b14e7taN?si=21505c23f9e24ca3"
           title="Spotify player"
           width="100%"
           height="152"
@@ -71,7 +69,7 @@ export default function AboutPage() {
         />
 
         <p>
-          I also love bass fishing. I&apos;m really into
+          I also love bass fishing and
           {" "}
           <a
             href="https://www.tacklewarehouse.com/"
@@ -79,9 +77,8 @@ export default function AboutPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            tackle and fishing gear
-          </a>{""}
-          , and I&apos;m hoping to start a YouTube channel after college apps.
+            tackle
+          </a>.
         </p>
         <p>
           I&apos;m an agonistic. I lean towards Christianity.

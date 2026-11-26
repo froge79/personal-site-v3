@@ -82,6 +82,45 @@ const socials = [
       </svg>
     ),
   },
+  {
+    name: "Goodreads",
+    href: "https://www.goodreads.com/user/show/206387943-samuel-xie",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z" />
+        <path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H19v-5" />
+        <path d="M9 8h6" />
+      </svg>
+    ),
+  },
+  {
+    name: "Fragrantica",
+    href: "https://www.fragrantica.com/@froge79#custom",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M10 2h4v4h-4z" />
+        <path d="M12 6v2" />
+        <rect x="5" y="8" width="14" height="14" rx="3" />
+        <path d="M9 14h6" />
+      </svg>
+    ),
+  },
 ] as const;
 
 export function SocialLinks() {
